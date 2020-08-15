@@ -1,13 +1,15 @@
-abstract class View<T> {
-  private _elemento: JQuery;
+namespace Views {
+  export abstract class View<T> {
+    private _elemento: JQuery;
 
-  constructor(seletor: string) {
-    this._elemento = $(seletor);
+    constructor(seletor: string) {
+      this._elemento = $(seletor);
+    }
+
+    update(modelo: T): void {
+      this._elemento.html(this.template(modelo));
+    }
+
+    abstract template(modelo: T): string;
   }
-
-  update(modelo: T): void {
-    this._elemento.html(this.template(modelo));
-  }
-
-  abstract template(modelo: T): string;
 }
