@@ -1,3 +1,6 @@
+import { logarNovaClasse } from "../helpers/decorators/index";
+
+@logarNovaClasse()
 export class Negociacao {
   constructor(
     readonly data: Date,
