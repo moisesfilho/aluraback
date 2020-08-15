@@ -23,6 +23,7 @@ export class NegociacaoController {
 
     if (!this._ehDiaUtil(data)) {
       this._mensagemView.update("Negociações só podem ser criadas em dias úteis.");
+      return;
     }
 
     const negociacao = new Negociacao(data, parseInt(this._inputQuantidade.val()), parseFloat(this._inputValor.val()));
