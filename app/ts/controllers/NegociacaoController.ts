@@ -2,6 +2,7 @@ import { domInject, throttle } from "../helpers/decorators/index";
 import { Negociacao, Negociacoes } from "../models/index";
 import { NegociacaoService } from "../services/index";
 import { MensagemView, NegociacoesView } from "../views/index";
+import { imprime } from "../helpers/Utils";
 
 export class NegociacaoController {
   @domInject("#data")
@@ -31,6 +32,9 @@ export class NegociacaoController {
     const negociacao = new Negociacao(data, parseInt(this._inputQuantidade.val()), parseFloat(this._inputValor.val()));
 
     this._negociacoes.adiciona(negociacao);
+
+    imprime(negociacao, this._negociacoes);
+
     this._negociacoesView.update(this._negociacoes);
     this._mensagemView.update("Negociação adicionada com sucesso!");
   }
