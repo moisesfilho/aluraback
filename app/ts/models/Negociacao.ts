@@ -2,10 +2,8 @@ import { logarNovaClasse } from "../helpers/decorators/index";
 import { Imprimivel } from "./Imprimivel";
 
 @logarNovaClasse()
-export class Negociacao extends Imprimivel{
-  constructor(readonly data: Date, readonly quantidade: number, readonly valor: number) {
-    super();
-  }
+export class Negociacao implements Imprimivel {
+  constructor(readonly data: Date, readonly quantidade: number, readonly valor: number) {}
 
   get volume() {
     return this.quantidade * this.valor;
