@@ -1,9 +1,9 @@
 import { logarNovaClasse } from "../helpers/decorators/index";
-import { Imprimivel } from "./Imprimivel";
-import { Igualavel } from "./Igualavel";
+import { MeuObjeto } from "./MeuObjeto";
+
 
 @logarNovaClasse()
-export class Negociacao implements Imprimivel, Igualavel<Negociacao> {
+export class Negociacao implements MeuObjeto<Negociacao> {
   constructor(readonly data: Date, readonly quantidade: number, readonly valor: number) {}
 
   get volume() {
