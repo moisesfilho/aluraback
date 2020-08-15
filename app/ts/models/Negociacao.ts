@@ -1,8 +1,9 @@
 import { logarNovaClasse } from "../helpers/decorators/index";
 import { Imprimivel } from "./Imprimivel";
+import { Igualavel } from "./Igualavel";
 
 @logarNovaClasse()
-export class Negociacao implements Imprimivel {
+export class Negociacao implements Imprimivel, Igualavel<Negociacao> {
   constructor(readonly data: Date, readonly quantidade: number, readonly valor: number) {}
 
   get volume() {
@@ -11,5 +12,13 @@ export class Negociacao implements Imprimivel {
 
   paraTexto(): void {
     console.log("Negociacao: " + JSON.stringify(this));
+  }
+
+  ehIgual(negociacao: Negociacao): boolean {
+    return (
+      this.data.getDate() == negociacao.data.getDate() &&
+      this.data.getMonth() == negociacao.data.getMonth() &&
+      this.data.getFullYear() == negociacao.data.getFullYear()
+    );
   }
 }
