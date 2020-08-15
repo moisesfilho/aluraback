@@ -1,5 +1,6 @@
 import { Negociacao, Negociacoes } from "../models/index";
 import { MensagemView, NegociacoesView } from "../views/index";
+import { logarTempoDeExecucao } from "../helpers/decorators/index";
 
 export class NegociacaoController {
   private _inputData: JQuery;
@@ -16,6 +17,7 @@ export class NegociacaoController {
     this._negociacoesView.update(this._negociacoes);
   }
 
+  @logarTempoDeExecucao()
   adiciona(event: Event): void {
     event.preventDefault();
 
@@ -29,13 +31,6 @@ export class NegociacaoController {
     const negociacao = new Negociacao(data, parseInt(this._inputQuantidade.val()), parseFloat(this._inputValor.val()));
 
     this._negociacoes.adiciona(negociacao);
-
-    this._negociacoes.paraArray().forEach((negociacao) => {
-      console.log(negociacao.data);
-      console.log(negociacao.quantidade);
-      console.log(negociacao.valor);
-    });
-
     this._negociacoesView.update(this._negociacoes);
     this._mensagemView.update("Negociação adicionada com sucesso!");
   }
